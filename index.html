@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>QUERY PON ON DEMAND</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<!-- CSS Center = cssc;01 -->
+<style>
+        body {
+            width: 90%;
+            height: 100%;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+    
+        table {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+           
+        }
+    
+        td,
+        th {
+            border: 1px solid #949494;
+            padding: 0.4rem;
+            
+        }
+        
+        </style>
+</head>
+
+<body>
+  <header>
+    <!-- place navbar here -->
+    <h1>Herramientas by calidad de red</h1>
+  </header>
+  <main>
+    <div class="container">
+        <form  id="formulario" class="d-flex">
+            <div class="col">
+                <div class="mb-3">
+                    <label for="" class="form-label">Board:</label>
+                    <input type="text"  id="board" name="board"class="form-control" placeholder="Ingresa board">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Port:</label>
+                    <input type="text"  id="port" name = "port" class="form-control" placeholder="Ingresa port">
+                </div>
+              
+                <div class="mb-3">
+                    <label for="olt_item"  id="olt"  class="form-label">Selecciona OLT:</label>
+                    <select  type="text" class= "form-select" name= "olt" id="olt_name">
+                        <option value=0> --- OLT ---</option>
+
+                        <?php 
+                            include 'conexion.php';
+                            while($obj = pg_fetch_object($consulta)){ ?>
+                            <option value ="<?php echo $obj->IP_Admin ?>"><?php echo $obj->OLT;?></option>
+                        <?php 
+                        } 
+                        ?>
+                    </select>
+                </div>
+                <div class="mb-3">
+                  <button type="submit" class="btn btn-primary"> Consultar</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+  </main>
+  
+  
+  <!-- Bootstrap JavaScript Libraries -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+  </script> -->
+  <table id="query_pon"></table>
+  <script src="/cto_copado_herramienta/frontend/main.js"></script>
+      
+</body>
+
+</html>
